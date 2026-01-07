@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { CodeAvailabilityBadge } from "@/components/CodeAvailabilityBadge";
+import { ProjectCompletionButton } from "@/components/ProjectCompletionButton";
 import type { Project } from "@/data/projects";
 import { ChevronDown, Clock, ExternalLink, Star } from "lucide-react";
 import { useState } from "react";
@@ -190,14 +191,15 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         </Collapsible>
       </CardContent>
       
-      <CardFooter>
+      <CardFooter className="flex gap-2">
         <Button 
           variant="outline" 
-          className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+          className="flex-1 group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? '收起详情' : '查看详情'}
         </Button>
+        <ProjectCompletionButton projectId={project.id} />
       </CardFooter>
     </Card>
   );
