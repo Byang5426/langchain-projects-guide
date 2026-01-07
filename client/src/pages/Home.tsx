@@ -54,8 +54,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Progress Stats - Desktop Sidebar */}
-      <div className="fixed right-4 top-20 w-80 max-w-[calc(100vw-2rem)] z-40 max-h-[calc(100vh-6rem)] overflow-y-auto hidden lg:block">
+      {/* Progress Stats - Desktop Sidebar - Optimized positioning */}
+      <div className="fixed right-4 top-24 w-72 max-w-[calc(100vw-2rem)] z-40 max-h-[calc(100vh-8rem)] overflow-y-auto hidden lg:block">
         <ProgressStats totalProjects={projects.length} />
       </div>
 
@@ -117,7 +117,7 @@ export default function Home() {
 
       {/* Projects Section */}
       <section className="py-12 md:py-16">
-        <div className="container lg:mr-96">
+        <div className="container lg:pr-96">
           <div className="space-y-8">
             {/* Section Title */}
             <div>
