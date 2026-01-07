@@ -16,10 +16,16 @@ export interface Project {
     url: string;
   }[];
   icon?: string;
+  codeAvailability: number; // 0-100, percentage
+  codeAvailabilityLabel: 'complete' | 'partial' | 'tutorial' | 'minimal';
+  codeExamples: {
+    name: string;
+    url: string;
+    description: string;
+  }[];
 }
 
 export const projects: Project[] = [
-  // Basic Projects
   {
     id: 'sql-agent',
     title: '智能 SQL 查询代理',
@@ -47,6 +53,20 @@ export const projects: Project[] = [
       {
         name: 'LangChain SQL Agent 文档',
         url: 'https://python.langchain.com/docs/tutorials/sql_qa/'
+      }
+    ],
+    codeAvailability: 70,
+    codeAvailabilityLabel: 'partial',
+    codeExamples: [
+      {
+        name: 'LangChain 官方 SQL Agent 示例',
+        url: 'https://python.langchain.com/docs/tutorials/sql_qa/',
+        description: '完整的 SQL Agent 实现，包括数据库连接、Schema 探索和查询生成'
+      },
+      {
+        name: 'LangGraph SQL Agent 工作流',
+        url: 'https://langchain-ai.github.io/langgraph/tutorials/sql_qa/',
+        description: 'LangGraph 版本的 SQL Agent，展示节点式架构'
       }
     ]
   },
@@ -80,7 +100,26 @@ export const projects: Project[] = [
         url: 'https://python.langchain.com/docs/tutorials/rag/'
       }
     ],
-    icon: '/images/rag-visual.png'
+    icon: '/images/rag-visual.png',
+    codeAvailability: 90,
+    codeAvailabilityLabel: 'complete',
+    codeExamples: [
+      {
+        name: 'Datawhale All-in-RAG 第 1-3 章',
+        url: 'https://github.com/datawhalechina/all-in-rag/tree/main/notebooks',
+        description: '完整的 Jupyter Notebook，包括文档加载、分块、嵌入和向量存储'
+      },
+      {
+        name: 'LangChain RAG 官方教程',
+        url: 'https://python.langchain.com/docs/tutorials/rag/',
+        description: '官方 RAG 实现，可直接复制代码运行'
+      },
+      {
+        name: 'LangChain 文档加载器',
+        url: 'https://python.langchain.com/docs/how_to/document_loaders/',
+        description: '支持 PDF、Markdown、Word 等多种文档格式'
+      }
+    ]
   },
   {
     id: 'chatbot',
@@ -110,10 +149,27 @@ export const projects: Project[] = [
         name: 'LangGraph 官方教程',
         url: 'https://langchain-ai.github.io/langgraph/'
       }
+    ],
+    codeAvailability: 55,
+    codeAvailabilityLabel: 'tutorial',
+    codeExamples: [
+      {
+        name: 'LC-StudyLab 阶段三：LangGraph 工作流',
+        url: 'https://github.com/hefeng6500/lc-studylab/tree/main/stage_3_langgraph',
+        description: '完整的状态管理和对话历史实现'
+      },
+      {
+        name: 'LangGraph 状态管理教程',
+        url: 'https://langchain-ai.github.io/langgraph/how-tos/state-management/',
+        description: '官方状态管理最佳实践'
+      },
+      {
+        name: 'LangChain 记忆系统',
+        url: 'https://python.langchain.com/docs/how_to/message_history/',
+        description: '对话历史和记忆管理'
+      }
     ]
   },
-  
-  // Intermediate Projects
   {
     id: 'web-research',
     title: 'Web 研究与文章生成代理',
@@ -143,6 +199,25 @@ export const projects: Project[] = [
       {
         name: 'LangGraph 多节点工作流',
         url: 'https://langchain-ai.github.io/langgraph/tutorials/multi_agent/'
+      }
+    ],
+    codeAvailability: 45,
+    codeAvailabilityLabel: 'tutorial',
+    codeExamples: [
+      {
+        name: 'ProjectPro Web Research 案例',
+        url: 'https://www.projectpro.io/article/langgraph-projects-and-examples/1124',
+        description: '完整的多阶段工作流实现'
+      },
+      {
+        name: 'LangGraph 多节点教程',
+        url: 'https://langchain-ai.github.io/langgraph/tutorials/multi_agent/',
+        description: '官方多节点工作流设计指南'
+      },
+      {
+        name: 'LangChain 工具集成',
+        url: 'https://python.langchain.com/docs/how_to/custom_tools/',
+        description: '网络搜索和其他工具的集成方法'
       }
     ]
   },
@@ -176,6 +251,25 @@ export const projects: Project[] = [
         name: 'ProjectPro Code Generation',
         url: 'https://www.projectpro.io/article/langgraph-projects-and-examples/1124'
       }
+    ],
+    codeAvailability: 60,
+    codeAvailabilityLabel: 'partial',
+    codeExamples: [
+      {
+        name: 'LangGraph 自适应 RAG',
+        url: 'https://langchain-ai.github.io/langgraph/tutorials/rag/langgraph_adaptive_rag/',
+        description: '自我纠错循环的完整实现'
+      },
+      {
+        name: 'Datawhale All-in-RAG 第 6 章',
+        url: 'https://github.com/datawhalechina/all-in-rag',
+        description: 'RAG 自我纠错机制'
+      },
+      {
+        name: 'ProjectPro 代码生成案例',
+        url: 'https://www.projectpro.io/article/langgraph-projects-and-examples/1124',
+        description: '代码生成和测试的完整流程'
+      }
     ]
   },
   {
@@ -207,6 +301,25 @@ export const projects: Project[] = [
       {
         name: 'LangChain 工具集成',
         url: 'https://python.langchain.com/docs/how_to/custom_tools/'
+      }
+    ],
+    codeAvailability: 65,
+    codeAvailabilityLabel: 'partial',
+    codeExamples: [
+      {
+        name: 'ProjectPro 金融分析代理',
+        url: 'https://www.projectpro.io/article/langgraph-projects-and-examples/1124',
+        description: '完整的金融数据获取和分析流程'
+      },
+      {
+        name: 'yfinance 官方文档',
+        url: 'https://yfinance.readthedocs.io/',
+        description: '股票数据获取 API'
+      },
+      {
+        name: 'LangChain 工具定义',
+        url: 'https://python.langchain.com/docs/how_to/custom_tools/',
+        description: '自定义 Agent 工具'
       }
     ]
   },
@@ -240,10 +353,27 @@ export const projects: Project[] = [
         name: 'LangGraph Human-in-the-Loop',
         url: 'https://langchain-ai.github.io/langgraph/how-tos/human_in_the_loop/'
       }
+    ],
+    codeAvailability: 50,
+    codeAvailabilityLabel: 'tutorial',
+    codeExamples: [
+      {
+        name: 'ProjectPro 社交媒体代理',
+        url: 'https://www.projectpro.io/article/langgraph-projects-and-examples/1124',
+        description: '多平台内容生成和审核流程'
+      },
+      {
+        name: 'LangGraph Human-in-the-Loop 教程',
+        url: 'https://langchain-ai.github.io/langgraph/how-tos/human_in_the_loop/',
+        description: '人机协作工作流实现'
+      },
+      {
+        name: 'LangChain 流式输出',
+        url: 'https://python.langchain.com/docs/how_to/streaming/',
+        description: '实时内容生成和流式输出'
+      }
     ]
   },
-  
-  // Advanced Projects
   {
     id: 'lc-studylab',
     title: 'LC-StudyLab 完整生态系统',
@@ -274,7 +404,31 @@ export const projects: Project[] = [
         url: 'https://python.langchain.com/'
       }
     ],
-    icon: '/images/langchain-visual.png'
+    icon: '/images/langchain-visual.png',
+    codeAvailability: 95,
+    codeAvailabilityLabel: 'complete',
+    codeExamples: [
+      {
+        name: 'LC-StudyLab 完整项目',
+        url: 'https://github.com/hefeng6500/lc-studylab',
+        description: '5 个阶段的完整代码实现，包含详细中文注释'
+      },
+      {
+        name: '阶段一：Agent 基础',
+        url: 'https://github.com/hefeng6500/lc-studylab/tree/main/stage_1_agent',
+        description: '工具调用和 Agent 基础'
+      },
+      {
+        name: '阶段二：RAG 系统',
+        url: 'https://github.com/hefeng6500/lc-studylab/tree/main/stage_2_rag',
+        description: '知识库构建和检索'
+      },
+      {
+        name: '阶段三：LangGraph',
+        url: 'https://github.com/hefeng6500/lc-studylab/tree/main/stage_3_langgraph',
+        description: '工作流和状态管理'
+      }
+    ]
   },
   {
     id: 'graph-rag',
@@ -307,7 +461,26 @@ export const projects: Project[] = [
         url: 'https://python.langchain.com/docs/use_cases/graph/'
       }
     ],
-    icon: '/images/langgraph-visual.png'
+    icon: '/images/langgraph-visual.png',
+    codeAvailability: 75,
+    codeAvailabilityLabel: 'partial',
+    codeExamples: [
+      {
+        name: 'Datawhale All-in-RAG 第 9 章',
+        url: 'https://github.com/datawhalechina/all-in-rag/tree/main/notebooks',
+        description: '完整的 Graph RAG 实现和 Notebook'
+      },
+      {
+        name: 'LangChain Graph RAG 教程',
+        url: 'https://python.langchain.com/docs/use_cases/graph/',
+        description: '官方 Graph RAG 实现指南'
+      },
+      {
+        name: 'Neo4J 官方文档',
+        url: 'https://neo4j.com/docs/',
+        description: '图数据库基础和查询语言'
+      }
+    ]
   },
   {
     id: 'multi-agent',
@@ -338,6 +511,25 @@ export const projects: Project[] = [
       {
         name: 'LangGraph 多智能体教程',
         url: 'https://langchain-ai.github.io/langgraph/tutorials/multi_agent/'
+      }
+    ],
+    codeAvailability: 60,
+    codeAvailabilityLabel: 'partial',
+    codeExamples: [
+      {
+        name: 'LC-StudyLab 阶段四：DeepAgents',
+        url: 'https://github.com/hefeng6500/lc-studylab/tree/main/stage_4_deepagents',
+        description: '多智能体协作的完整实现'
+      },
+      {
+        name: 'LangGraph 多智能体教程',
+        url: 'https://langchain-ai.github.io/langgraph/tutorials/multi_agent/',
+        description: '官方多智能体设计指南'
+      },
+      {
+        name: 'LangGraph 消息传递',
+        url: 'https://langchain-ai.github.io/langgraph/how-tos/message-passing/',
+        description: '智能体间通信机制'
       }
     ]
   },
@@ -372,6 +564,25 @@ export const projects: Project[] = [
         name: 'LangGraph 高级工作流',
         url: 'https://langchain-ai.github.io/langgraph/tutorials/'
       }
+    ],
+    codeAvailability: 50,
+    codeAvailabilityLabel: 'tutorial',
+    codeExamples: [
+      {
+        name: 'LangGraph 自适应 RAG',
+        url: 'https://langchain-ai.github.io/langgraph/tutorials/rag/langgraph_adaptive_rag/',
+        description: '自我纠错循环的完整实现'
+      },
+      {
+        name: 'ProjectPro 自我纠错助手',
+        url: 'https://www.projectpro.io/article/langgraph-projects-and-examples/1124',
+        description: '企业级自我纠错系统'
+      },
+      {
+        name: 'LangGraph 条件边',
+        url: 'https://langchain-ai.github.io/langgraph/how-tos/conditional-edges/',
+        description: '动态工作流控制'
+      }
     ]
   },
   {
@@ -405,6 +616,25 @@ export const projects: Project[] = [
         name: 'LangChain 垂直领域应用',
         url: 'https://python.langchain.com/docs/use_cases/'
       }
+    ],
+    codeAvailability: 35,
+    codeAvailabilityLabel: 'minimal',
+    codeExamples: [
+      {
+        name: 'ProjectPro 医疗代理',
+        url: 'https://www.projectpro.io/article/langgraph-projects-and-examples/1124',
+        description: '医疗场景的对话系统实现'
+      },
+      {
+        name: 'LangChain 垂直领域应用',
+        url: 'https://python.langchain.com/docs/use_cases/',
+        description: '行业特定应用的最佳实践'
+      },
+      {
+        name: 'LangGraph 状态管理',
+        url: 'https://langchain-ai.github.io/langgraph/how-tos/state-management/',
+        description: '患者信息和上下文管理'
+      }
     ]
   }
 ];
@@ -417,3 +647,17 @@ export const categories = [
 ];
 
 export const allTags = Array.from(new Set(projects.flatMap(p => p.tags))).sort();
+
+export const codeAvailabilityColors = {
+  complete: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300',
+  partial: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
+  tutorial: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300',
+  minimal: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300'
+};
+
+export const codeAvailabilityLabels = {
+  complete: '完整代码',
+  partial: '部分代码',
+  tutorial: '教程参考',
+  minimal: '最小示例'
+};

@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { CodeAvailabilityBadge } from "@/components/CodeAvailabilityBadge";
 import type { Project } from "@/data/projects";
 import { ChevronDown, Clock, ExternalLink, Star } from "lucide-react";
 import { useState } from "react";
@@ -90,6 +91,14 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             </Badge>
           ))}
         </div>
+
+        {/* Code Availability Indicator */}
+        <div className="pt-2 border-t border-border/50">
+          <CodeAvailabilityBadge 
+            availability={project.codeAvailability}
+            label={project.codeAvailabilityLabel}
+          />
+        </div>
         
         <Collapsible open={isOpen} onOpenChange={setIsOpen}>
           <CollapsibleTrigger asChild>
@@ -131,9 +140,37 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                 ))}
               </ul>
             </div>
+
+            {/* Code Examples */}
+            {project.codeExamples.length > 0 && (
+              <div>
+                <h4 className="font-semibold text-sm mb-2 text-foreground">💻 代码示例</h4>
+                <div className="space-y-2">
+                  {project.codeExamples.map((example, i) => (
+                    <a
+                      key={i}
+                      href={example.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-start gap-2 p-2 rounded-lg bg-secondary/30 hover:bg-secondary/50 transition-colors group/link"
+                    >
+                      <ExternalLink className="w-4 h-4 text-primary mt-0.5 flex-shrink-0 group-hover/link:translate-x-0.5 transition-transform" />
+                      <div className="flex-1 min-w-0">
+                        <div className="font-mono text-xs font-semibold text-primary group-hover/link:underline">
+                          {example.name}
+                        </div>
+                        <div className="text-xs text-muted-foreground mt-0.5">
+                          {example.description}
+                        </div>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
             
             <div>
-              <h4 className="font-semibold text-sm mb-2 text-foreground">学习资源</h4>
+              <h4 className="font-semibold text-sm mb-2 text-foreground">📚 学习资源</h4>
               <div className="space-y-2">
                 {project.resources.map((resource, i) => (
                   <a
