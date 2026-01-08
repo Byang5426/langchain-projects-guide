@@ -7,7 +7,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { CodeAvailabilityBadge } from "@/components/CodeAvailabilityBadge";
 import type { Project } from "@/data/projects";
-import { ChevronDown, Clock, ExternalLink, Star } from "lucide-react";
+import { ChevronDown, Clock, ExternalLink, Star, Check } from "lucide-react";
+import { useProgressTracker } from "@/hooks/useProgressTracker";
 import { useState } from "react";
 
 interface ProjectCardProps {
@@ -17,6 +18,8 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const { isProjectCompleted, toggleProjectCompletion } = useProgressTracker();
+  const completed = isProjectCompleted(project.id);
   
   const categoryColors = {
     basic: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
@@ -190,13 +193,33 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         </Collapsible>
       </CardContent>
       
-      <CardFooter>
+      <CardFooter className="flex gap-2">
         <Button 
           variant="outline" 
-          className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+          className="flex-1 group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? '收起详情' : '查看详情'}
+        </Button>
+        <Button
+          variant={completed ? "default" : "outline"}
+          size="sm"
+          className={`gap-2 ${
+            completed
+              ? 'bg-green-600 hover:bg-green-700 text-white'
+              : 'hover:bg-primary/10'
+          }`}
+          onClick={() => toggleProjectCompletion(project.id)}
+          title={completed ? "点击标记为未完成" : "点击标记为已完成"}
+        >
+          {completed ? (
+            <>
+              <Check className="w-4 h-4" />
+              已完成
+            </>
+          ) : (
+            '标记完成'
+          )}
         </Button>
       </CardFooter>
     </Card>

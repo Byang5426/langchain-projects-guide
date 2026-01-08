@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProjectCard } from "@/components/ProjectCard";
+import { ProgressStats } from "@/components/ProgressStats";
 import { allTags, categories, projects } from "@/data/projects";
 import { BookOpen, ExternalLink, Filter, Github, Search, Sparkles } from "lucide-react";
 import { useMemo, useState } from "react";
@@ -53,6 +54,10 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      {/* Progress Stats - Fixed Sidebar */}
+      <div className="fixed right-4 top-24 w-72 max-w-[calc(100vw-2rem)] z-40 max-h-[calc(100vh-8rem)] overflow-y-auto hidden lg:block">
+        <ProgressStats totalProjects={projects.length} />
+      </div>
       {/* Hero Section */}
       <section 
         className="relative bg-gradient-to-br from-blue-900 via-purple-900 to-blue-800 text-white overflow-hidden"
