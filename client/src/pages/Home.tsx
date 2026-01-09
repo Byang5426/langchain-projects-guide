@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProjectCard } from "@/components/ProjectCard";
 import { ProgressStats } from "@/components/ProgressStats";
+import ShowcaseSection from "@/components/ShowcaseSection";
 import { allTags, categories, projects } from "@/data/projects";
 import { BookOpen, ExternalLink, Filter, Github, Search, Sparkles } from "lucide-react";
 import { useMemo, useState } from "react";
@@ -223,6 +224,9 @@ export default function Home() {
           )}
         </div>
       </section>
+
+      {/* Showcase Section */}
+      <ShowcaseSection />
 
       {/* Learning Path Section */}
       <section 
